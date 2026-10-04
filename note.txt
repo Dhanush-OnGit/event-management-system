@@ -1,0 +1,125 @@
+event_management?
+│
+├── manage.py
+│
+├── event_management/
+│   ├── settings.py
+│   └── urls.py
+│
+├── accounts/
+│   ├── models.py
+│   ├── serializers.py
+│   ├── views.py
+│   ├── urls.py
+│   ├── admin.py
+│   └── tests.py
+│
+├── events/
+│   ├── models.py
+│   ├── serializers.py
+│   ├── views.py
+│   ├── urls.py
+│   ├── admin.py
+│   └── tests.py
+│
+└── bookings/
+    ├── models.py
+    ├── serializers.py
+    ├── views.py
+    ├── urls.py
+    ├── admin.py
+    └── tests.py
+
+events/
+---------
+Python Django Workshop
+
+It could have:                                                  
+| Information | Example |
+|---|---|
+| Event name | Python Django Workshop |
+| Category | Workshop |
+| Description | Learn Django REST API |
+| Date | 2026-10-20 |
+| Time | 10:00 AM |
+| Venue | Calicut |
+| Total seats | 50 |
+| Owner | Dhanush |
+
+User                                                                            
+ │
+ │ creates
+ ▼
+Event
+ │
+ ├── Category
+ │
+ └── Seats
+       │
+       ▼
+    Booking
+       │
+       ▼
+      User
+----------------
+    Dhanush
+   │
+   └── creates
+          │
+          ▼
+   Django Workshop
+          │
+          ├── Category: Workshop
+          ├── Date: 20-10-2026
+          ├── Venue: Calicut
+          └── Total Seats: 50
+                    │
+                    ▼
+              User books 2 seats
+                    │
+                    ▼
+                 Booking
+
+The Event model stores all this information in the database.
+
+from django.conf import settings  :-
+    this is used when you want to access your Django project settings
+    inside another Python file, such as models.py, views.py, or serializers.py.
+
+bookings/models.py
+------------------
+This will store:
+- 👤 Which user booked
+- 🎫 Which event
+- 🪑 Number of seats
+- 📌 Booking status
+- 📅 Booking date
+
+                            Event Management System
+                              │
+                 ┌────────────┴────────────┐
+                 │                         │
+             ADMIN                       USER
+                 │                         │
+       ┌─────────┼─────────┐       ┌───────┼────────┐
+       │         │         │       │       │        │
+   Category    Events    Users    Login   Events   Booking
+       │         │                 │       │        │
+     CRUD       CRUD             Browse   View     Book
+                                                   │
+                                              Confirmation
+                                                   │
+                                              Booking History
+
+Admin
+ ├── Create Event
+ ├── Update Event
+ ├── Delete Event
+ └── Create Category
+
+Normal User
+ ├── View Events
+ ├── View Categories
+ ├── Book Event
+ ├── Cancel Booking
+ └── View Booking History
